@@ -1,4 +1,4 @@
-Cloudfront Device Detect
+Cloudfront Device Detect  [![Build Status](https://travis-ci.org/ideatosrl/cloudfront-device-detect.svg?branch=master)](https://travis-ci.org/ideatosrl/cloudfront-device-detect)
 ------------
 
 Detect devices based on CloudFront caching headers. More info on CloudFront headers are available [here](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-device).
