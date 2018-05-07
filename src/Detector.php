@@ -33,8 +33,7 @@ class Detector
      */
     public function isDesktop()
     {
-        return isset($this->headers[self::DESKTOP_HEADER])
-            && $this->headers[self::DESKTOP_HEADER];
+        return $this->is(self::DESKTOP_HEADER);
     }
 
     /**
@@ -42,8 +41,7 @@ class Detector
      */
     public function isTablet()
     {
-        return isset($this->headers[self::TABLET_HEADER])
-            && $this->headers[self::TABLET_HEADER];
+        return $this->is(self::TABLET_HEADER);
     }
 
     /**
@@ -51,8 +49,7 @@ class Detector
      */
     public function isMobile()
     {
-        return isset($this->headers[self::MOBILE_HEADER])
-            && $this->headers[self::MOBILE_HEADER];
+        return $this->is(self::MOBILE_HEADER);
     }
 
     /**
@@ -60,8 +57,7 @@ class Detector
      */
     public function isSmartTV()
     {
-        return isset($this->headers[self::SMART_TV_HEADER])
-            && $this->headers[self::SMART_TV_HEADER];
+        return $this->is(self::SMART_TV_HEADER);
     }
 
     /**
@@ -80,4 +76,9 @@ class Detector
         return $this->isDesktop() || $this->isTablet();
     }
 
+    private function is($device)
+    {
+        return isset($this->headers[$device])
+            && $this->headers[$device] === 'true';
+    }
 }

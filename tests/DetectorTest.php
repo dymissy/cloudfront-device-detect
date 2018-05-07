@@ -11,7 +11,12 @@ class DetectorTest extends TestCase
      */
     public function should_detect_desktop_device()
     {
-        $detector = new Detector(['HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 1]);
+        $detector = new Detector([
+            'HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 'true',
+            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'false',
+            'HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'  => 'false',
+            'HTTP_CLOUDFRONT_IS_SMARTTV_VIEWER' => 'false',
+        ]);
 
         $this->assertTrue($detector->isDesktop());
         $this->assertTrue($detector->isDesktopOrTablet());
@@ -26,7 +31,13 @@ class DetectorTest extends TestCase
      */
     public function should_detect_tablet_device()
     {
-        $detector = new Detector(['HTTP_CLOUDFRONT_IS_TABLET_VIEWER' => 1]);
+        $detector = new Detector([
+            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'true',
+            'HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 'false',
+            'HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'  => 'false',
+            'HTTP_CLOUDFRONT_IS_SMARTTV_VIEWER' => 'false',
+
+        ]);
 
         $this->assertTrue($detector->isTablet());
         $this->assertTrue($detector->isDesktopOrTablet());
@@ -41,7 +52,12 @@ class DetectorTest extends TestCase
      */
     public function should_detect_mobile_device()
     {
-        $detector = new Detector(['HTTP_CLOUDFRONT_IS_MOBILE_VIEWER' => 1]);
+        $detector = new Detector([
+            'HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'  => 'true',
+            'HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 'false',
+            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'false',
+            'HTTP_CLOUDFRONT_IS_SMARTTV_VIEWER' => 'false',
+        ]);
 
         $this->assertTrue($detector->isMobile());
         $this->assertTrue($detector->isMobileOrTablet());
@@ -56,7 +72,12 @@ class DetectorTest extends TestCase
      */
     public function should_detect_smart_tv_device()
     {
-        $detector = new Detector(['HTTP_CLOUDFRONT_IS_SMARTTV_VIEWER' => 1]);
+        $detector = new Detector([
+            'HTTP_CLOUDFRONT_IS_SMARTTV_VIEWER' => 'true',
+            'HTTP_CLOUDFRONT_IS_DESKTOP_VIEWER' => 'false',
+            'HTTP_CLOUDFRONT_IS_TABLET_VIEWER'  => 'false',
+            'HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'  => 'false',
+        ]);
 
         $this->assertTrue($detector->isSmartTV());
         $this->assertFalse($detector->isMobile());
